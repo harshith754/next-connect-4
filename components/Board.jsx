@@ -11,7 +11,9 @@ import { useSelector } from 'react-redux';
 
 const Board = () => {
   const [board, setBoard] = useState([]);
-  
+  const emptyBoard = Array.from({ length: rows }, () =>
+      Array.from({ length: cols }, () => null)
+  );
 
   const { player1Name, player2Name } = useSelector(state => state.playerInfo)
 
@@ -21,9 +23,7 @@ const Board = () => {
   const [turn,setTurn]=useState(null);
 
   useEffect(() => {
-    setBoard(Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => null)
-    ));
+    setBoard(emptyBoard);
     setTurn('red');
   }, []);
 
@@ -71,9 +71,7 @@ const Board = () => {
   }
 
   const clearBoard = ()=>{
-    setBoard(Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => null)
-));
+    setBoard(emptyBoard);
     setTurn("red")
   }
 
